@@ -79,7 +79,7 @@ export class SimpleParser {
       properties: description.properties || [],
       credentials: description.credentials || [],
       isAITool: description.usableAsTool === true,
-      isTrigger: description.polling === true || description.trigger === true,
+      isTrigger: description.polling === true || description.trigger === true || (description.group?.[0] === 'trigger' || description.category === 'trigger'),
       isWebhook: description.webhooks?.length > 0,
       operations: isDeclarative ? this.extractOperations(description.routing) : this.extractProgrammaticOperations(description),
       version: this.extractVersion(nodeClass),

@@ -110,7 +110,9 @@ export class NodeParser {
     return description.polling === true || 
            description.trigger === true ||
            description.eventTrigger === true ||
-           description.name?.toLowerCase().includes('trigger');
+           description.name?.toLowerCase().includes('trigger') ||
+           // Si la categoría o grupo es 'trigger', también es un trigger
+           (description.group?.[0] === 'trigger' || description.category === 'trigger');
   }
   
   private detectWebhook(description: any): boolean {
